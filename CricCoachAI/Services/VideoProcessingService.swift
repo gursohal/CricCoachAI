@@ -188,6 +188,119 @@ class VideoProcessingService: ObservableObject {
         return fileURL
     }
     
+    // MARK: - Video Normalization
+    
+    /// Normalize video to 1080p @ 30fps before processing.
+    /// This ensures consistent frame timing for phase detection velocity thresholds.
+    /// Handles iPhone slow-mo (240fps), 60fps, 4K, etc.
+    ///
+    /// - Returns: URL to normalized video (or original URL if already 30fps ≤1080p)
+    func normalizeVideo(from sourceURL: URL, sessionId: UUID) async throws -> URL {
+        let asset = AVURLAsset(url: sourceURL)
+        
+        guard let videoTrack = try await asset.loadTracks(withMediaType: .video).first else {
+            throw VideoProcessingError.noVideoTrack
+        }
+        
+        let frameRate = try await videoTrack.load(.nominalFrameRate)
+        let naturalSize = try await videoTrack.load(.naturalSize)
+        let transform = try await videoTrack.load(.preferredTransform)
+        let correctedSize = naturalSize.applying(transform)
+        let videoSize = CGSize(width: abs(correctedSize.width), height: abs(correctedSize.height))
+        
+        // Skip normalization if already ~30fps and ≤1080p
+        let needsFPSConversion = abs(Double(frameRate) - 30.0) > 1.0
+        let needsResize = max(videoSize.width, videoSize.height) > 1920
+        
+        guard needsFPSConversion || needsResize else {
+            print("[VideoNormalization] Already 30fps/1080p — skipping normalization")
+            return sourceURL  // Fast path
+        }
+        
+        print("[VideoNormalization] Normalizing: \(Int(frameRate))fps \(Int(videoSize.width))x\(Int(videoSize.height)) → 30fps 1080p")
+        
+        // Create output URL
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let normalizedDir = documentsPath.appendingPathComponent("normalized", isDirectory: true)
+        try FileManager.default.createDirectory(at: normalizedDir, withIntermediateDirectories: true)
+        let outputURL = normalizedDir.appendingPathComponent("\(sessionId.uuidString)_normalized.mp4")
+        
+        // Remove existing file if present
+        if FileManager.default.fileExists(atPath: outputURL.path) {
+            try FileManager.default.removeItem(at: outputURL)
+        }
+        
+        // Use AVMutableComposition to re-time the video
+        let composition = AVMutableComposition()
+        guard let compositionVideoTrack = composition.addMutableTrack(
+            withMediaType: .video,
+            preferredTrackID: kCMPersistentTrackID_Invalid
+        ) else {
+            throw VideoProcessingError.cannotReadVideo
+        }
+        
+        let duration = try await asset.load(.duration)
+        try compositionVideoTrack.insertTimeRange(
+            CMTimeRange(start: .zero, duration: duration),
+            of: videoTrack,
+            at: .zero
+        )
+        compositionVideoTrack.preferredTransform = transform
+        
+        // Also copy audio if present
+        if let audioTrack = try? await asset.loadTracks(withMediaType: .audio).first,
+           let compositionAudioTrack = composition.addMutableTrack(
+            withMediaType: .audio,
+            preferredTrackID: kCMPersistentTrackID_Invalid
+           ) {
+            try? compositionAudioTrack.insertTimeRange(
+                CMTimeRange(start: .zero, duration: duration),
+                of: audioTrack,
+                at: .zero
+            )
+        }
+        
+        // Export at 1080p — AVAssetExportSession handles frame rate normalization
+        guard let exportSession = AVAssetExportSession(
+            asset: composition,
+            presetName: AVAssetExportPreset1920x1080
+        ) else {
+            throw VideoProcessingError.cannotReadVideo
+        }
+        
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = .mp4
+        exportSession.shouldOptimizeForNetworkUse = true
+        
+        // Force 30fps output via video composition
+        let videoComposition = AVMutableVideoComposition()
+        videoComposition.frameDuration = CMTime(value: 1, timescale: 30)
+        videoComposition.renderSize = CGSize(
+            width: min(videoSize.width, 1920),
+            height: min(videoSize.height, 1080)
+        )
+        
+        let instruction = AVMutableVideoCompositionInstruction()
+        instruction.timeRange = CMTimeRange(start: .zero, duration: duration)
+        
+        let layerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTrack)
+        instruction.layerInstructions = [layerInstruction]
+        videoComposition.instructions = [instruction]
+        
+        exportSession.videoComposition = videoComposition
+        
+        await exportSession.export()
+        
+        guard exportSession.status == .completed else {
+            let errMsg = exportSession.error?.localizedDescription ?? "Unknown"
+            print("[VideoNormalization] Export failed: \(errMsg)")
+            throw VideoProcessingError.cannotReadVideo
+        }
+        
+        print("[VideoNormalization] Complete → \(outputURL.lastPathComponent)")
+        return outputURL
+    }
+    
     // MARK: - Cleanup
     
     /// Delete video and key frames for a session
@@ -208,6 +321,14 @@ class VideoProcessingService: ObservableObject {
             .appendingPathComponent(sessionId.uuidString)
         if FileManager.default.fileExists(atPath: keyFramesDir.path) {
             try FileManager.default.removeItem(at: keyFramesDir)
+        }
+        
+        // Delete normalized video
+        let normalizedPath = documentsPath
+            .appendingPathComponent("normalized")
+            .appendingPathComponent("\(sessionId.uuidString)_normalized.mp4")
+        if FileManager.default.fileExists(atPath: normalizedPath.path) {
+            try FileManager.default.removeItem(at: normalizedPath)
         }
     }
     

@@ -68,7 +68,7 @@ class StorageService: ObservableObject {
     
     /// Get all sessions, ordered by date (newest first)
     func getAllSessions() -> [AnalysisSession] {
-        var descriptor = FetchDescriptor<AnalysisSession>(
+        let descriptor = FetchDescriptor<AnalysisSession>(
             sortBy: [SortDescriptor(\.date, order: .reverse)]
         )
         return (try? modelContext.fetch(descriptor)) ?? []
@@ -77,7 +77,7 @@ class StorageService: ObservableObject {
     /// Get sessions filtered by type
     func getSessions(type: AnalysisType) -> [AnalysisSession] {
         let typeStr = type.rawValue
-        var descriptor = FetchDescriptor<AnalysisSession>(
+        let descriptor = FetchDescriptor<AnalysisSession>(
             predicate: #Predicate { $0.analysisType == typeStr },
             sortBy: [SortDescriptor(\.date, order: .reverse)]
         )
@@ -163,8 +163,8 @@ class StorageService: ObservableObject {
         
         let calendar = Calendar.current
         var streak = 1
-        var currentWeek = calendar.component(.weekOfYear, from: Date())
-        var currentYear = calendar.component(.year, from: Date())
+        let currentWeek = calendar.component(.weekOfYear, from: Date())
+        let currentYear = calendar.component(.year, from: Date())
         
         // Check if there's a session this week
         let hasSessionThisWeek = sessions.contains { session in

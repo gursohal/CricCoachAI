@@ -248,6 +248,57 @@ struct PoseSequence: Codable {
         )
     }
     
+    /// Interpolate pose at any timestamp for smooth skeleton overlay at 30fps.
+    /// Uses linear interpolation between the two nearest sampled frames.
+    func interpolatedFrame(at timestamp: TimeInterval) -> PoseFrame? {
+        guard !frames.isEmpty else { return nil }
+        
+        // Find the two frames bracketing this timestamp
+        guard let afterIdx = frames.firstIndex(where: { $0.timestamp > timestamp }) else {
+            return frames.last  // Past the end — return last frame
+        }
+        
+        guard afterIdx > 0 else {
+            return frames.first  // Before the start — return first frame
+        }
+        
+        let before = frames[afterIdx - 1]
+        let after = frames[afterIdx]
+        
+        let dt = after.timestamp - before.timestamp
+        guard dt > 0 else { return before }
+        let t = (timestamp - before.timestamp) / dt  // 0...1
+        
+        var interpolatedLandmarks: [String: NormalizedPoint] = [:]
+        for (key, beforePoint) in before.landmarks {
+            if let afterPoint = after.landmarks[key] {
+                interpolatedLandmarks[key] = NormalizedPoint(
+                    x: beforePoint.x + Float(t) * (afterPoint.x - beforePoint.x),
+                    y: beforePoint.y + Float(t) * (afterPoint.y - beforePoint.y)
+                )
+            } else {
+                interpolatedLandmarks[key] = beforePoint
+            }
+        }
+        
+        // Interpolate confidence too
+        var interpolatedConfidence: [String: Float] = [:]
+        for (key, beforeConf) in before.confidence {
+            if let afterConf = after.confidence[key] {
+                interpolatedConfidence[key] = beforeConf + Float(t) * (afterConf - beforeConf)
+            } else {
+                interpolatedConfidence[key] = beforeConf
+            }
+        }
+        
+        return PoseFrame(
+            timestamp: timestamp,
+            frameIndex: before.frameIndex,
+            landmarks: interpolatedLandmarks,
+            confidence: interpolatedConfidence
+        )
+    }
+    
     /// Get smoothed position using rolling average
     func smoothedPosition(for landmark: BodyLandmark, at frameIndex: Int, windowSize: Int = 5) -> CGPoint? {
         let halfWindow = windowSize / 2

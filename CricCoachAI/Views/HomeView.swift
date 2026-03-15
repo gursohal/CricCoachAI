@@ -163,7 +163,12 @@ struct HomeView: View {
         processingStep = "Preparing video..."
         processingError = nil
         
-        Task {
+        let pipelineTransaction = AnalyticsService.startTransaction(
+            name: "analysis_pipeline",
+            operation: "full_analysis"
+        )
+        
+        Task { @MainActor in
             do {
                 // 1. Save video and create session
                 let videoService = VideoProcessingService()
@@ -179,18 +184,39 @@ struct HomeView: View {
                     )
                 }
                 
-                // 2. Pose Estimation (~50% of work)
+                // 2. Normalize video to 30fps/1080p (handles slow-mo, 4K, etc.)
+                await MainActor.run {
+                    processingStep = "Normalizing video..."
+                    processingProgress = 0.03
+                }
+                
+                let normalizedURL = try await videoService.normalizeVideo(
+                    from: savedURL,
+                    sessionId: sessionId
+                )
+                
+                // 3. Pose Estimation (~50% of work)
                 await MainActor.run {
                     processingStep = "Extracting body poses from video..."
                     processingProgress = 0.05
                 }
                 
+                AnalyticsService.track(.poseEstimationStarted, properties: [
+                    "video_duration": videoInfo.duration,
+                    "source_fps": videoInfo.fps,
+                    "resolution": videoInfo.resolution,
+                    "analysis_type": selectedAnalysisType.rawValue,
+                    "was_normalized": normalizedURL != savedURL
+                ])
+                
+                let poseStartTime = CFAbsoluteTimeGetCurrent()
                 let poseService = PoseEstimationService()
-                let poseSequence = try await poseService.processVideo(url: savedURL) { progress in
+                let poseSequence = try await poseService.processVideo(url: normalizedURL) { progress in
                     Task { @MainActor in
                         processingProgress = 0.05 + progress * 0.45
                     }
                 }
+                let poseElapsedMs = (CFAbsoluteTimeGetCurrent() - poseStartTime) * 1000
                 
                 await MainActor.run {
                     processingProgress = 0.5
@@ -198,8 +224,18 @@ struct HomeView: View {
                 }
                 
                 guard !poseSequence.frames.isEmpty else {
+                    AnalyticsService.track(.poseEstimationFailed, properties: [
+                        "error": "no_frames_detected",
+                        "analysis_type": selectedAnalysisType.rawValue
+                    ])
                     throw AnalysisPipelineError.noPoseDetected
                 }
+                
+                AnalyticsService.track(.poseEstimationCompleted, properties: [
+                    "frame_count": poseSequence.frameCount,
+                    "duration_ms": Int(poseElapsedMs),
+                    "analysis_type": selectedAnalysisType.rawValue
+                ])
                 
                 // 3. Phase Detection
                 let phaseService = PhaseDetectionService()
@@ -214,8 +250,20 @@ struct HomeView: View {
                 }
                 
                 guard !detectedPhases.isEmpty else {
+                    AnalyticsService.track(.poseEstimationFailed, properties: [
+                        "error": "no_phases_detected",
+                        "frame_count": poseSequence.frameCount,
+                        "analysis_type": selectedAnalysisType.rawValue
+                    ])
                     throw AnalysisPipelineError.noPhasesDetected
                 }
+                
+                let avgConfidence = detectedPhases.map { $0.confidence }.reduce(0, +) / Float(detectedPhases.count)
+                AnalyticsService.track(.phaseDetectionCompleted, properties: [
+                    "phase_count": detectedPhases.count,
+                    "analysis_type": selectedAnalysisType.rawValue,
+                    "confidence_avg": Double(avgConfidence)
+                ])
                 
                 // 4. Rule-Based Scoring
                 let scoringService = RuleScoringService()
@@ -227,6 +275,16 @@ struct HomeView: View {
                 
                 let overallScore = techniqueScores.isEmpty ? 0 :
                     techniqueScores.reduce(0) { $0 + $1.overallScore } / techniqueScores.count
+                
+                var phaseScoreProps: [String: Int] = [:]
+                for score in techniqueScores {
+                    phaseScoreProps[score.phase.rawValue] = score.overallScore
+                }
+                AnalyticsService.track(.scoringCompleted, properties: [
+                    "overall_score": overallScore,
+                    "analysis_type": selectedAnalysisType.rawValue,
+                    "phase_scores": phaseScoreProps
+                ])
                 
                 await MainActor.run {
                     processingProgress = 0.9
@@ -256,6 +314,8 @@ struct HomeView: View {
                     processingStep = "Done!"
                 }
                 
+                AnalyticsService.finishTransaction(pipelineTransaction, status: .ok)
+                
                 // Brief pause so user sees 100%
                 try await Task.sleep(nanoseconds: 500_000_000)
                 
@@ -267,6 +327,12 @@ struct HomeView: View {
                 }
                 
             } catch {
+                AnalyticsService.captureError(error, context: [
+                    "analysis_type": selectedAnalysisType.rawValue,
+                    "step": processingStep
+                ])
+                AnalyticsService.finishTransaction(pipelineTransaction, status: .unknownError)
+                
                 await MainActor.run {
                     isProcessing = false
                 }

@@ -120,6 +120,11 @@ struct RecordingView: View {
         cameraManager.startRecording()
         isRecording = true
         recordingTime = 0
+        
+        AnalyticsService.track(.recordingStarted, properties: [
+            "analysis_type": analysisType.rawValue
+        ])
+        
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             recordingTime += 0.1
             if recordingTime >= AppConstants.maxRecordingDuration {
@@ -133,6 +138,11 @@ struct RecordingView: View {
         timer = nil
         isRecording = false
         cameraManager.stopRecording()
+        
+        AnalyticsService.track(.recordingCompleted, properties: [
+            "duration_seconds": recordingTime,
+            "analysis_type": analysisType.rawValue
+        ])
     }
     
     private func formatTime(_ time: TimeInterval) -> String {

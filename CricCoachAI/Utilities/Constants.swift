@@ -18,6 +18,8 @@ enum AppConstants {
     // MARK: - Pose Estimation
     static let minimumConfidence: Float = 0.5
     static let smoothingWindowSize = 5  // frames for rolling average
+    static let poseEstimationFPS: Double = 10  // 10fps = every 3rd frame at 30fps, with interpolation for overlay
+    static let targetVideoFPS: Double = 30  // Canonical FPS for all processing (after normalization)
     
     // MARK: - Subscription
     static let freeAnalysesPerMonth = 3
@@ -36,6 +38,11 @@ enum AppConstants {
     static let videosDirectory = "recordings"
     static let keyFramesDirectory = "keyframes"
     static let maxStorageGB: Double = 2.0
+    
+    // MARK: - Observability
+    static let sentryDSN = "https://YOUR_KEY@o0.ingest.sentry.io/0"  // Replace with real DSN
+    static let postHogAPIKey = "phc_YOUR_KEY"  // Replace with real PostHog API key
+    static let isProduction = false  // Toggle true for App Store release builds
 }
 
 // MARK: - Ideal Biomechanical Values

@@ -17,6 +17,11 @@ class SharingService {
     static func shareSession(_ session: AnalysisSession, from viewController: UIViewController? = nil) {
         guard let image = generateShareCard(session: session) else { return }
         
+        AnalyticsService.track(.sessionShared, properties: [
+            "analysis_type": session.analysisType,
+            "overall_score": session.overallScore
+        ])
+        
         let text = "Just analyzed my \(session.type.displayName.lowercased()) technique with CricCoach AI! Score: \(session.overallScore)/100 🏏"
         
         let activityVC = UIActivityViewController(

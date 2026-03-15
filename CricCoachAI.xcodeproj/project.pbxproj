@@ -12,21 +12,30 @@
 		0D1B3C0B580E25574720A60F /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0481C068600B1DE59D1EB0 /* ScoreCardView.swift */; };
 		0D3CF862958A918BEACAEAC8 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068907CE0C47D04DFE2E400 /* AnalysisView.swift */; };
 		1DFB2D421934585A7592313B /* AngleCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C006738FE868F42DF0A2D6 /* AngleCalculator.swift */; };
+		210C264A64278AB4640F9493 /* FeatureFlagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E158DB422BFC584770DDED5A /* FeatureFlagService.swift */; };
 		27B89A3A84A355B2E57502CB /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3910FCB49DCDBA7A43AA0896 /* StorageService.swift */; };
+		2DA310F366C47879CD580F2B /* ScoringConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FEDB449A22FDF58D0386C5 /* ScoringConfig.swift */; };
+		369B8F0EBB20393E8C8A5BFF /* AIResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861691A8E8BC1752F342C898 /* AIResponseValidator.swift */; };
+		3CCCB5680CA6D68E27F1FF11 /* PhaseDetectionGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38FDF4B3B58294C6EC688AD /* PhaseDetectionGoldenTests.swift */; };
 		3D3CBF353F2E34D2423E75F0 /* VideoImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD30B0F37308824382820DB6 /* VideoImportView.swift */; };
 		3F3C00B2B0C542F62FFEB1B3 /* PhaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C52CFBC684B91197A19254 /* PhaseDetailView.swift */; };
+		49BB7D72FBF1C95B03528C14 /* AIResponseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36A76B046D55289E14E8F23 /* AIResponseValidatorTests.swift */; };
 		501EB636980CDEB766058ACD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C345F237EBCB556044FF37 /* Constants.swift */; };
 		55C74D6A095D18DFAF39F164 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320903407011462D50749B28 /* ContentView.swift */; };
 		57C8D2E938B4F2040324E3C9 /* AnalysisSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F6F2DED37B7FB88E217C9F /* AnalysisSession.swift */; };
 		59D81C60FE704D046FDD43B6 /* SkeletonOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D74BEE4D1545E8EA8A141AB /* SkeletonOverlayView.swift */; };
 		5FCC103CB9773D4D6D388DD0 /* RuleScoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C40222A421140C0AB73CEF /* RuleScoringService.swift */; };
 		6537973A0B849AB51257A108 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D46AD128CA4AFD07C9266CA6 /* Assets.xcassets */; };
+		6CCCC28A1AE3C66F561FCD0A /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = DE1D5BF5025CAB4F1BA99385 /* PostHog */; };
+		7579C5BE13892451078242E4 /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DAE3BD8E30E5CF2B0087DC9D /* SentrySwiftUI */; };
 		7A67EB0A178088CB85CA7E5F /* PoseEstimationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA5AA8A1611437D97A7144 /* PoseEstimationService.swift */; };
 		7F2DF68D17DA2D00A96455F1 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E576D06E8EC10E504F54558 /* PaywallView.swift */; };
+		86ACD5316E7D1B72A775F975 /* ScoringConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EF4BB5EE1747BA51B1517 /* ScoringConfigService.swift */; };
 		8F6FF0C03CAE3265312332D2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019BB8A4EEAFC7213D39881A /* HomeView.swift */; };
 		8FE8E7A0D7107541FF5BADD5 /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F26829F002BA9CB29E73C23 /* SharingService.swift */; };
 		90041F25EB480BB25F778378 /* AngleBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E376AB19CA6874AFA2E82FB0 /* AngleBadgeView.swift */; };
 		922C04FAD7408A178B249B16 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5B30E8D8FD72F80E41448 /* OnboardingView.swift */; };
+		B79DA85C2E78E95021E3E6C4 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE098FD7475060EB24C0864C /* AnalyticsService.swift */; };
 		C172F2F5DD1321F427844B51 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49ABFD4B0DFDE81B6C7E1AB /* DesignSystem.swift */; };
 		C32ED23AC791FF0FD4AD2C21 /* PhaseDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31547EC91FDCD581BBE17D0 /* PhaseDetectionService.swift */; };
 		C3B9DC61B4DCCD441B89D011 /* CricCoachAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCEE1DA9F6AF8F5234441E /* CricCoachAIApp.swift */; };
@@ -56,6 +65,7 @@
 		006F55BD7228A8F6F886B000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		019BB8A4EEAFC7213D39881A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		26BE77133318A86F8CCCED6E /* CricCoachAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CricCoachAI.entitlements; sourceTree = "<group>"; };
+		31FEDB449A22FDF58D0386C5 /* ScoringConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringConfig.swift; sourceTree = "<group>"; };
 		320903407011462D50749B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3910FCB49DCDBA7A43AA0896 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3E256017D2DF3E299A0A6C2C /* PoseNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseNormalizer.swift; sourceTree = "<group>"; };
@@ -68,6 +78,7 @@
 		5DA0DD4452F2BA322A7F22BC /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		5F26829F002BA9CB29E73C23 /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingService.swift; sourceTree = "<group>"; };
 		6614C66599281E6B9D85A3D0 /* SessionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProgressView.swift; sourceTree = "<group>"; };
+		861691A8E8BC1752F342C898 /* AIResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponseValidator.swift; sourceTree = "<group>"; };
 		8745CD7A3678491642BD2511 /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
 		87C52CFBC684B91197A19254 /* PhaseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseDetailView.swift; sourceTree = "<group>"; };
 		88247CF1430C28506292D85F /* AIAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAnalysisService.swift; sourceTree = "<group>"; };
@@ -81,7 +92,12 @@
 		C5AF03872D6BBD3831F5CC92 /* VideoProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProcessingService.swift; sourceTree = "<group>"; };
 		CCFDF598B7F3157689DC143D /* CricCoachAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CricCoachAITests.swift; sourceTree = "<group>"; };
 		CD30B0F37308824382820DB6 /* VideoImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImportView.swift; sourceTree = "<group>"; };
+		CE098FD7475060EB24C0864C /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		D36A76B046D55289E14E8F23 /* AIResponseValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIResponseValidatorTests.swift; sourceTree = "<group>"; };
+		D38FDF4B3B58294C6EC688AD /* PhaseDetectionGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseDetectionGoldenTests.swift; sourceTree = "<group>"; };
 		D46AD128CA4AFD07C9266CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E12EF4BB5EE1747BA51B1517 /* ScoringConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringConfigService.swift; sourceTree = "<group>"; };
+		E158DB422BFC584770DDED5A /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
 		E376AB19CA6874AFA2E82FB0 /* AngleBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleBadgeView.swift; sourceTree = "<group>"; };
 		E4E5B30E8D8FD72F80E41448 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F2BE24862C22D3C466B265EC /* PhaseTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimelineView.swift; sourceTree = "<group>"; };
@@ -89,6 +105,18 @@
 		FA127841C7CE66D6B6325CB5 /* CricCoachAITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CricCoachAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE103EE46EBCCE367BBDCD0 /* PosePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosePhase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4654E4CC6AA9DFB5DC6F17F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7579C5BE13892451078242E4 /* SentrySwiftUI in Frameworks */,
+				6CCCC28A1AE3C66F561FCD0A /* PostHog in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		02646AE79CB8DD3ADB8D6668 /* Products */ = {
@@ -176,6 +204,7 @@
 				42F6F2DED37B7FB88E217C9F /* AnalysisSession.swift */,
 				958326769395ACC734B6DA93 /* PoseFrame.swift */,
 				FCE103EE46EBCCE367BBDCD0 /* PosePhase.swift */,
+				31FEDB449A22FDF58D0386C5 /* ScoringConfig.swift */,
 				B04BAE76CCA3622D7DE97F0E /* TechniqueScore.swift */,
 			);
 			path = Models;
@@ -185,9 +214,13 @@
 			isa = PBXGroup;
 			children = (
 				88247CF1430C28506292D85F /* AIAnalysisService.swift */,
+				861691A8E8BC1752F342C898 /* AIResponseValidator.swift */,
+				CE098FD7475060EB24C0864C /* AnalyticsService.swift */,
+				E158DB422BFC584770DDED5A /* FeatureFlagService.swift */,
 				A31547EC91FDCD581BBE17D0 /* PhaseDetectionService.swift */,
 				9ACA5AA8A1611437D97A7144 /* PoseEstimationService.swift */,
 				53C40222A421140C0AB73CEF /* RuleScoringService.swift */,
+				E12EF4BB5EE1747BA51B1517 /* ScoringConfigService.swift */,
 				5F26829F002BA9CB29E73C23 /* SharingService.swift */,
 				3910FCB49DCDBA7A43AA0896 /* StorageService.swift */,
 				C5AF03872D6BBD3831F5CC92 /* VideoProcessingService.swift */,
@@ -198,7 +231,9 @@
 		D541E4F46BF818537EEEDA93 /* CricCoachAITests */ = {
 			isa = PBXGroup;
 			children = (
+				D36A76B046D55289E14E8F23 /* AIResponseValidatorTests.swift */,
 				CCFDF598B7F3157689DC143D /* CricCoachAITests.swift */,
+				D38FDF4B3B58294C6EC688AD /* PhaseDetectionGoldenTests.swift */,
 			);
 			path = CricCoachAITests;
 			sourceTree = "<group>";
@@ -222,6 +257,7 @@
 			buildPhases = (
 				FDE13A19F628EF1C4D58CD15 /* Sources */,
 				F2DF9D0534019F2D85F7EE29 /* Resources */,
+				4654E4CC6AA9DFB5DC6F17F8 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,6 +265,8 @@
 			);
 			name = CricCoachAI;
 			packageProductDependencies = (
+				DAE3BD8E30E5CF2B0087DC9D /* SentrySwiftUI */,
+				DE1D5BF5025CAB4F1BA99385 /* PostHog */,
 			);
 			productName = CricCoachAI;
 			productReference = F839CF9815CD7E83B217743A /* CricCoachAI.app */;
@@ -279,6 +317,10 @@
 			);
 			mainGroup = 4BAEC809503375324DEAEB00;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C22308E5FE1E20B8E64F6AAA /* XCRemoteSwiftPackageReference "posthog-ios" */,
+				0142866FDFAD12BC94EE5CF8 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 02646AE79CB8DD3ADB8D6668 /* Products */;
 			projectDirPath = "";
@@ -306,7 +348,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BB7D72FBF1C95B03528C14 /* AIResponseValidatorTests.swift in Sources */,
 				D44A6B7144865B53A042A746 /* CricCoachAITests.swift in Sources */,
+				3CCCB5680CA6D68E27F1FF11 /* PhaseDetectionGoldenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,14 +359,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4DAE4034CB70B7BEDFB4A15 /* AIAnalysisService.swift in Sources */,
+				369B8F0EBB20393E8C8A5BFF /* AIResponseValidator.swift in Sources */,
 				57C8D2E938B4F2040324E3C9 /* AnalysisSession.swift in Sources */,
 				0D3CF862958A918BEACAEAC8 /* AnalysisView.swift in Sources */,
+				B79DA85C2E78E95021E3E6C4 /* AnalyticsService.swift in Sources */,
 				90041F25EB480BB25F778378 /* AngleBadgeView.swift in Sources */,
 				1DFB2D421934585A7592313B /* AngleCalculator.swift in Sources */,
 				501EB636980CDEB766058ACD /* Constants.swift in Sources */,
 				55C74D6A095D18DFAF39F164 /* ContentView.swift in Sources */,
 				C3B9DC61B4DCCD441B89D011 /* CricCoachAIApp.swift in Sources */,
 				C172F2F5DD1321F427844B51 /* DesignSystem.swift in Sources */,
+				210C264A64278AB4640F9493 /* FeatureFlagService.swift in Sources */,
 				8F6FF0C03CAE3265312332D2 /* HomeView.swift in Sources */,
 				922C04FAD7408A178B249B16 /* OnboardingView.swift in Sources */,
 				7F2DF68D17DA2D00A96455F1 /* PaywallView.swift in Sources */,
@@ -336,6 +383,8 @@
 				F8BA62417BB7E25FF6C6225A /* RecordingView.swift in Sources */,
 				5FCC103CB9773D4D6D388DD0 /* RuleScoringService.swift in Sources */,
 				0D1B3C0B580E25574720A60F /* ScoreCardView.swift in Sources */,
+				2DA310F366C47879CD580F2B /* ScoringConfig.swift in Sources */,
+				86ACD5316E7D1B72A775F975 /* ScoringConfigService.swift in Sources */,
 				EC58C2FA515B616DD9712F6D /* SessionProgressView.swift in Sources */,
 				E82E27333810EB1403D0FEA6 /* SetupGuideView.swift in Sources */,
 				8FE8E7A0D7107541FF5BADD5 /* SharingService.swift in Sources */,
@@ -588,6 +637,38 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0142866FDFAD12BC94EE5CF8 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.40.0;
+			};
+		};
+		C22308E5FE1E20B8E64F6AAA /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PostHog/posthog-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DAE3BD8E30E5CF2B0087DC9D /* SentrySwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0142866FDFAD12BC94EE5CF8 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = SentrySwiftUI;
+		};
+		DE1D5BF5025CAB4F1BA99385 /* PostHog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C22308E5FE1E20B8E64F6AAA /* XCRemoteSwiftPackageReference "posthog-ios" */;
+			productName = PostHog;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 62ECA644A857C0D18FD48296 /* Project object */;
 }

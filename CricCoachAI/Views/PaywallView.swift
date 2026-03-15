@@ -30,6 +30,11 @@ struct PaywallView: View {
                     Text("Unlock your full potential").font(.subheadline).foregroundColor(.secondary)
                 }
                 .padding(.top, 20)
+                .onAppear {
+                    AnalyticsService.track(.paywallViewed, properties: [
+                        "trigger": "manual"
+                    ])
+                }
                 
                 // Features
                 VStack(alignment: .leading, spacing: 12) {
@@ -103,6 +108,10 @@ struct PaywallView: View {
     }
     
     private func subscribe() {
+        AnalyticsService.track(.subscriptionStarted, properties: [
+            "plan": selectedPlan.rawValue,
+            "price": selectedPlan.price
+        ])
         // TODO: Integrate RevenueCat/StoreKit 2
         print("Subscribe to \(selectedPlan.rawValue)")
     }

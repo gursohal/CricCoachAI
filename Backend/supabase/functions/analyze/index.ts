@@ -1,10 +1,10 @@
 // Supabase Edge Function: POST /api/analyze
-// Receives key frames + pose data + scores, calls GPT-4o Vision, returns coaching feedback
+// Receives key frames + pose data + scores, calls Claude Vision, returns coaching feedback
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY")!;
+const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -97,7 +97,7 @@ serve(async (req: Request) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Allow-Headers": "authorization, content-type",
+        "Access-Control-Allow-Headers": "authorization, content-type, x-api-version",
       },
     });
   }
@@ -117,6 +117,15 @@ serve(async (req: Request) => {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
+    // API version routing
+    const apiVersion = req.headers.get("X-API-Version") || "v1";
+    if (apiVersion !== "v1") {
+      return new Response(
+        JSON.stringify({ error: `Unsupported API version: ${apiVersion}. Supported: v1` }),
+        { status: 400 }
+      );
+    }
+
     // Check rate limit
     const { data: canAnalyze } = await supabase.rpc("check_analysis_limit", {
       p_user_id: user.id,
@@ -132,7 +141,7 @@ serve(async (req: Request) => {
     // Parse payload
     const payload: AnalysisPayload = await req.json();
 
-    // Build GPT-4o messages
+    // Build Claude messages
     const userContent: any[] = [];
 
     // Text description
@@ -165,49 +174,52 @@ serve(async (req: Request) => {
 
     userContent.push({ type: "text", text: textMessage });
 
-    // Add images
+    // Add images (Claude format: type "image" with base64 source)
     for (const frame of payload.key_frames) {
       if (frame.image_base64) {
         userContent.push({
-          type: "image_url",
-          image_url: {
-            url: `data:image/jpeg;base64,${frame.image_base64}`,
-            detail: "low",
+          type: "image",
+          source: {
+            type: "base64",
+            media_type: "image/jpeg",
+            data: frame.image_base64,
           },
         });
       }
     }
 
-    // Call OpenAI GPT-4o Vision
-    const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    // Call Anthropic Claude API
+    const claudeResponse = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${OPENAI_API_KEY}`,
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "gpt-4o",
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 2000,
+        system: SYSTEM_PROMPT,
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: userContent },
         ],
-        max_tokens: 2000,
         temperature: 0.3,
-        response_format: { type: "json_object" },
       }),
     });
 
-    if (!openaiResponse.ok) {
-      const errText = await openaiResponse.text();
-      console.error("OpenAI error:", errText);
+    if (!claudeResponse.ok) {
+      const errText = await claudeResponse.text();
+      console.error("Claude API error:", errText);
       return new Response(
         JSON.stringify({ error: "AI analysis failed", details: errText }),
         { status: 502 }
       );
     }
 
-    const openaiData = await openaiResponse.json();
-    const aiContent = openaiData.choices?.[0]?.message?.content;
+    const claudeData = await claudeResponse.json();
+    
+    // Extract text content from Claude's response
+    const aiContent = claudeData.content?.find((block: any) => block.type === "text")?.text;
 
     if (!aiContent) {
       return new Response(
@@ -218,9 +230,10 @@ serve(async (req: Request) => {
 
     let coachingResponse;
     try {
-      coachingResponse = JSON.parse(aiContent);
+      // Claude may wrap JSON in markdown code blocks — strip them
+      const jsonStr = aiContent.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+      coachingResponse = JSON.parse(jsonStr);
     } catch {
-      // Retry with a simpler prompt if JSON parsing fails
       console.error("Failed to parse AI response:", aiContent);
       return new Response(
         JSON.stringify({ error: "Invalid AI response format" }),

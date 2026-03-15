@@ -15,8 +15,8 @@ class PoseEstimationService: ObservableObject {
     
     /// Maximum dimension for processing (downsample 4K to this)
     private let maxProcessingDimension: CGFloat = 720
-    /// Target FPS for analysis (no need for 60fps, 15 is plenty)
-    private let targetAnalysisFPS: Double = 15
+    /// Target FPS for analysis — 10fps (every 3rd frame at 30fps) + interpolation for overlay
+    private let targetAnalysisFPS: Double = AppConstants.poseEstimationFPS
     
     /// Whether we're running on simulator (Vision pose doesn't work there)
     private var isSimulator: Bool {

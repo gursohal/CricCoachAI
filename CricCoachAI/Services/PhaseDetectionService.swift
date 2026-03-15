@@ -35,7 +35,7 @@ class PhaseDetectionService {
         let wristVelocities = calculateSmoothedVelocities(
             for: .rightWrist, in: sequence
         )
-        let leftWristVelocities = calculateSmoothedVelocities(
+        let _ = calculateSmoothedVelocities(
             for: .leftWrist, in: sequence
         )
         

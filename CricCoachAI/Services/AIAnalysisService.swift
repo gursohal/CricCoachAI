@@ -1,14 +1,15 @@
 import Foundation
 import UIKit
 
-/// Service for AI-powered coaching feedback via GPT-4o Vision API
+/// Service for AI-powered coaching feedback via Claude Vision API
 class AIAnalysisService {
     
     private let apiTimeout = AppConstants.apiTimeout
     
     // MARK: - Main Analysis
     
-    /// Send analysis data to backend and get AI coaching feedback
+    /// Send analysis data to backend and get AI coaching feedback.
+    /// Respects the `ai_coaching_enabled` feature flag — returns fallback if disabled.
     func analyzeSession(
         analysisType: AnalysisType,
         keyFrameImages: [PosePhase: UIImage],
@@ -18,6 +19,22 @@ class AIAnalysisService {
         userProfile: UserProfile?,
         previousScores: [String: Int]?
     ) async throws -> AICoachingResponse {
+        
+        // Check feature flag — AI coaching can be disabled server-side
+        let flagsEnabled = await MainActor.run { FeatureFlagService.shared.isAICoachingEnabled }
+        guard flagsEnabled else {
+            return generateFallbackFeedback(
+                techniqueScores: techniqueScores,
+                analysisType: analysisType
+            )
+        }
+        
+        AnalyticsService.track(.aiAnalysisStarted, properties: [
+            "analysis_type": analysisType.rawValue,
+            "key_frame_count": keyFrameImages.count
+        ])
+        
+        let startTime = CFAbsoluteTimeGetCurrent()
         
         // Build the request payload
         let payload = try buildPayload(
@@ -31,8 +48,58 @@ class AIAnalysisService {
         )
         
         // Send to backend
-        let response = try await sendToBackend(payload: payload)
-        return response
+        do {
+            let rawResponse = try await sendToBackend(payload: payload)
+            
+            // Validate AI claims against actual pose data (P1-2: AI Validation Layer)
+            let validationResult = AIResponseValidator.validate(
+                response: rawResponse,
+                against: payload,
+                techniqueScores: techniqueScores
+            )
+            
+            if validationResult.wasModified {
+                print("[AIAnalysis] Validator modified response: \(validationResult.flaggedIssues.count) flags")
+                for flag in validationResult.flaggedIssues {
+                    print("  - \(flag.field): claimed=\(flag.claimedValue), actual=\(flag.actualValue), deviation=\(String(format: "%.1f", flag.deviationPercent))%, action=\(flag.action.rawValue)")
+                }
+            }
+            
+            // If all issues were removed, fall back to rule-based feedback
+            let response: AICoachingResponse
+            if validationResult.cleanedResponse.issues.isEmpty && !rawResponse.issues.isEmpty {
+                print("[AIAnalysis] All AI issues removed by validator — falling back to rule-based feedback")
+                response = generateFallbackFeedback(
+                    techniqueScores: techniqueScores,
+                    analysisType: analysisType
+                )
+            } else {
+                response = validationResult.cleanedResponse
+            }
+            
+            let latencyMs = Int((CFAbsoluteTimeGetCurrent() - startTime) * 1000)
+            AnalyticsService.track(.aiAnalysisCompleted, properties: [
+                "latency_ms": latencyMs,
+                "overall_score": response.overallScore,
+                "issue_count": response.issues.count,
+                "analysis_type": analysisType.rawValue,
+                "validation_flags": validationResult.flaggedIssues.count,
+                "validation_modified": validationResult.wasModified
+            ])
+            
+            return response
+        } catch {
+            AnalyticsService.track(.aiAnalysisFailed, properties: [
+                "error_type": String(describing: type(of: error)),
+                "error_message": error.localizedDescription,
+                "analysis_type": analysisType.rawValue
+            ])
+            AnalyticsService.captureError(error, context: [
+                "service": "AIAnalysisService",
+                "analysis_type": analysisType.rawValue
+            ])
+            throw error
+        }
     }
     
     // MARK: - Payload Construction
@@ -111,6 +178,7 @@ class AIAnalysisService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(AppConstants.supabaseAnonKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("v1", forHTTPHeaderField: "X-API-Version")
         request.timeoutInterval = apiTimeout
         
         let encoder = JSONEncoder()

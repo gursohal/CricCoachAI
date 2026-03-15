@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AnalysisView: View {
     let session: AnalysisSession
+    @EnvironmentObject var storageService: StorageService
     @State private var selectedPhase: PosePhase?
     @State private var showingVideo = false
     
@@ -12,7 +13,7 @@ struct AnalysisView: View {
                 overallScoreSection
                 
                 // Video Player (if available)
-                if let url = session.videoURL, let seq = session.poseSequence {
+                if let _ = session.videoURL, let _ = session.poseSequence {
                     Button(action: { showingVideo = true }) {
                         HStack {
                             Image(systemName: "play.circle.fill")
@@ -41,6 +42,9 @@ struct AnalysisView: View {
                 if let focus = session.aiCoachingResponse?.nextSessionFocus {
                     nextSessionCard(focus)
                 }
+                
+                // User Feedback
+                feedbackSection
             }
             .padding(.horizontal)
         }
@@ -189,6 +193,68 @@ struct AnalysisView: View {
                 .buttonStyle(.plain)
             }
         }
+    }
+    
+    // MARK: - User Feedback
+    
+    @ViewBuilder
+    private var feedbackSection: some View {
+        if session.userFeedback == nil {
+            // Show feedback prompt
+            VStack(spacing: 12) {
+                Text("Was this analysis helpful?")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                HStack(spacing: 24) {
+                    Button(action: { submitFeedback(helpful: true) }) {
+                        Label("Helpful", systemImage: "hand.thumbsup")
+                            .font(.subheadline)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(Color.green.opacity(0.15)))
+                    }
+                    .buttonStyle(.plain)
+                    
+                    Button(action: { submitFeedback(helpful: false) }) {
+                        Label("Not Helpful", systemImage: "hand.thumbsdown")
+                            .font(.subheadline)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(Color.orange.opacity(0.15)))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: DesignSystem.Layout.cornerRadius)
+                .fill(Color(UIColor.secondarySystemBackground)))
+        } else if let feedback = session.userFeedback {
+            // Show thank-you
+            HStack {
+                Image(systemName: feedback ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                    .foregroundColor(feedback ? .green : .orange)
+                Text(feedback ? "Thanks! Glad it helped." : "Thanks — we'll improve.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: DesignSystem.Layout.cornerRadius)
+                .fill(Color(UIColor.secondarySystemBackground)))
+        }
+    }
+    
+    private func submitFeedback(helpful: Bool) {
+        session.userFeedback = helpful
+        
+        AnalyticsService.track(.feedbackSubmitted, properties: [
+            "helpful": helpful,
+            "session_id": session.id.uuidString,
+            "overall_score": session.overallScore,
+            "analysis_type": session.analysisType
+        ])
     }
     
     // MARK: - Next Session Card

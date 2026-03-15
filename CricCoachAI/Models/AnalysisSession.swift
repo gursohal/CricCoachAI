@@ -19,6 +19,7 @@ final class AnalysisSession {
     var durationSeconds: Double
     var isProcessing: Bool
     var isAIAnalysisComplete: Bool
+    var userFeedback: Bool?  // nil = not submitted, true = helpful, false = not helpful
     
     init(
         id: UUID = UUID(),

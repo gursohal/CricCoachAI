@@ -2,8 +2,17 @@ import Foundation
 import CoreGraphics
 
 /// Rule-based biomechanical scoring service
-/// Scores each phase against ideal benchmarks
+/// Scores each phase against ideal benchmarks.
+/// Accepts an optional `ScoringConfig` for server-overridable thresholds (P2-8).
 class RuleScoringService {
+    
+    /// Scoring thresholds — defaults match `IdealValues` in Constants.swift.
+    /// Pass a server-fetched config to override thresholds without an app update.
+    let config: ScoringConfig
+    
+    init(config: ScoringConfig = .default) {
+        self.config = config
+    }
     
     // MARK: - Main Scoring
     

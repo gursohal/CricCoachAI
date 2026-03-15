@@ -85,6 +85,22 @@ struct VideoImportView: View {
                     return
                 }
                 
+                // Track import analytics
+                let importAsset = AVURLAsset(url: videoData.url)
+                var importFPS: Double = 30
+                var importResolution = "unknown"
+                if let track = try? await importAsset.loadTracks(withMediaType: .video).first {
+                    importFPS = Double(try await track.load(.nominalFrameRate))
+                    let size = try await track.load(.naturalSize)
+                    importResolution = "\(Int(size.width))x\(Int(size.height))"
+                }
+                
+                AnalyticsService.track(.videoImported, properties: [
+                    "duration_seconds": seconds,
+                    "source_fps": importFPS,
+                    "resolution": importResolution
+                ])
+                
                 await MainActor.run {
                     isProcessing = false
                     onVideoSelected(videoData.url)

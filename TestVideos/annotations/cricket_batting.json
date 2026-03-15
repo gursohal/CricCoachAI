@@ -1,0 +1,15 @@
+{
+  "video_file": "cricket_batting.mp4",
+  "analysis_type": "batting",
+  "source_fps": 30,
+  "resolution": "1080x1920",
+  "annotations": {
+    "stance": { "start_frame": 0, "end_frame": 30, "key_frame": 15 },
+    "backlift": { "start_frame": 31, "end_frame": 55, "key_frame": 55 },
+    "stride": { "start_frame": 56, "end_frame": 75, "key_frame": 75 },
+    "downswing": { "start_frame": 76, "end_frame": 90, "key_frame": 85 },
+    "contact": { "start_frame": 91, "end_frame": 100, "key_frame": 95 },
+    "batting_follow_through": { "start_frame": 101, "end_frame": 130, "key_frame": 115 }
+  },
+  "notes": "Initial test video — needs manual verification of frame numbers. Placeholder annotations."
+}
