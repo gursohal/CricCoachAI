@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		017529FC79745FDA4F9BDE99 /* PhaseTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BE24862C22D3C466B265EC /* PhaseTimelineView.swift */; };
+		04CB63F052891740E0C42BEA /* PosePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE103EE46EBCCE367BBDCD0 /* PosePhase.swift */; };
+		0D1B3C0B580E25574720A60F /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0481C068600B1DE59D1EB0 /* ScoreCardView.swift */; };
+		0D3CF862958A918BEACAEAC8 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0068907CE0C47D04DFE2E400 /* AnalysisView.swift */; };
+		1DFB2D421934585A7592313B /* AngleCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C006738FE868F42DF0A2D6 /* AngleCalculator.swift */; };
+		27B89A3A84A355B2E57502CB /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3910FCB49DCDBA7A43AA0896 /* StorageService.swift */; };
+		3D3CBF353F2E34D2423E75F0 /* VideoImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD30B0F37308824382820DB6 /* VideoImportView.swift */; };
+		3F3C00B2B0C542F62FFEB1B3 /* PhaseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C52CFBC684B91197A19254 /* PhaseDetailView.swift */; };
+		501EB636980CDEB766058ACD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C345F237EBCB556044FF37 /* Constants.swift */; };
+		55C74D6A095D18DFAF39F164 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320903407011462D50749B28 /* ContentView.swift */; };
+		57C8D2E938B4F2040324E3C9 /* AnalysisSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F6F2DED37B7FB88E217C9F /* AnalysisSession.swift */; };
+		59D81C60FE704D046FDD43B6 /* SkeletonOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D74BEE4D1545E8EA8A141AB /* SkeletonOverlayView.swift */; };
+		5FCC103CB9773D4D6D388DD0 /* RuleScoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C40222A421140C0AB73CEF /* RuleScoringService.swift */; };
+		6537973A0B849AB51257A108 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D46AD128CA4AFD07C9266CA6 /* Assets.xcassets */; };
+		7A67EB0A178088CB85CA7E5F /* PoseEstimationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA5AA8A1611437D97A7144 /* PoseEstimationService.swift */; };
+		7F2DF68D17DA2D00A96455F1 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E576D06E8EC10E504F54558 /* PaywallView.swift */; };
+		8F6FF0C03CAE3265312332D2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019BB8A4EEAFC7213D39881A /* HomeView.swift */; };
+		8FE8E7A0D7107541FF5BADD5 /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F26829F002BA9CB29E73C23 /* SharingService.swift */; };
+		90041F25EB480BB25F778378 /* AngleBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E376AB19CA6874AFA2E82FB0 /* AngleBadgeView.swift */; };
+		922C04FAD7408A178B249B16 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5B30E8D8FD72F80E41448 /* OnboardingView.swift */; };
+		C172F2F5DD1321F427844B51 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49ABFD4B0DFDE81B6C7E1AB /* DesignSystem.swift */; };
+		C32ED23AC791FF0FD4AD2C21 /* PhaseDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31547EC91FDCD581BBE17D0 /* PhaseDetectionService.swift */; };
+		C3B9DC61B4DCCD441B89D011 /* CricCoachAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCEE1DA9F6AF8F5234441E /* CricCoachAIApp.swift */; };
+		C4DAE4034CB70B7BEDFB4A15 /* AIAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88247CF1430C28506292D85F /* AIAnalysisService.swift */; };
+		D44A6B7144865B53A042A746 /* CricCoachAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFDF598B7F3157689DC143D /* CricCoachAITests.swift */; };
+		E3E5C57A2E52320E3BD9721D /* VideoProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AF03872D6BBD3831F5CC92 /* VideoProcessingService.swift */; };
+		E6981A4EE06493068681C8CB /* PoseNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E256017D2DF3E299A0A6C2C /* PoseNormalizer.swift */; };
+		E82E27333810EB1403D0FEA6 /* SetupGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745CD7A3678491642BD2511 /* SetupGuideView.swift */; };
+		EC58C2FA515B616DD9712F6D /* SessionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6614C66599281E6B9D85A3D0 /* SessionProgressView.swift */; };
+		F8BA62417BB7E25FF6C6225A /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0DD4452F2BA322A7F22BC /* RecordingView.swift */; };
+		FB64BB80ED9EDF42D75E76E5 /* PoseFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958326769395ACC734B6DA93 /* PoseFrame.swift */; };
+		FD0002FCB3C36B5A12C46EA9 /* TechniqueScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BAE76CCA3622D7DE97F0E /* TechniqueScore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6CDC24CFC9EC993C1F8C3B1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 62ECA644A857C0D18FD48296 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D859816BCDC97EB40BA04A21;
+			remoteInfo = CricCoachAI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0068907CE0C47D04DFE2E400 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		006F55BD7228A8F6F886B000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		019BB8A4EEAFC7213D39881A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		26BE77133318A86F8CCCED6E /* CricCoachAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CricCoachAI.entitlements; sourceTree = "<group>"; };
+		320903407011462D50749B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3910FCB49DCDBA7A43AA0896 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		3E256017D2DF3E299A0A6C2C /* PoseNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseNormalizer.swift; sourceTree = "<group>"; };
+		42F6F2DED37B7FB88E217C9F /* AnalysisSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisSession.swift; sourceTree = "<group>"; };
+		4A0481C068600B1DE59D1EB0 /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
+		4CBCEE1DA9F6AF8F5234441E /* CricCoachAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CricCoachAIApp.swift; sourceTree = "<group>"; };
+		4E576D06E8EC10E504F54558 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		53C40222A421140C0AB73CEF /* RuleScoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleScoringService.swift; sourceTree = "<group>"; };
+		55C345F237EBCB556044FF37 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5DA0DD4452F2BA322A7F22BC /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		5F26829F002BA9CB29E73C23 /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingService.swift; sourceTree = "<group>"; };
+		6614C66599281E6B9D85A3D0 /* SessionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProgressView.swift; sourceTree = "<group>"; };
+		8745CD7A3678491642BD2511 /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
+		87C52CFBC684B91197A19254 /* PhaseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseDetailView.swift; sourceTree = "<group>"; };
+		88247CF1430C28506292D85F /* AIAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAnalysisService.swift; sourceTree = "<group>"; };
+		958326769395ACC734B6DA93 /* PoseFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseFrame.swift; sourceTree = "<group>"; };
+		9ACA5AA8A1611437D97A7144 /* PoseEstimationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseEstimationService.swift; sourceTree = "<group>"; };
+		9D74BEE4D1545E8EA8A141AB /* SkeletonOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonOverlayView.swift; sourceTree = "<group>"; };
+		A31547EC91FDCD581BBE17D0 /* PhaseDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseDetectionService.swift; sourceTree = "<group>"; };
+		A49ABFD4B0DFDE81B6C7E1AB /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		B04BAE76CCA3622D7DE97F0E /* TechniqueScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueScore.swift; sourceTree = "<group>"; };
+		B3C006738FE868F42DF0A2D6 /* AngleCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleCalculator.swift; sourceTree = "<group>"; };
+		C5AF03872D6BBD3831F5CC92 /* VideoProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProcessingService.swift; sourceTree = "<group>"; };
+		CCFDF598B7F3157689DC143D /* CricCoachAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CricCoachAITests.swift; sourceTree = "<group>"; };
+		CD30B0F37308824382820DB6 /* VideoImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImportView.swift; sourceTree = "<group>"; };
+		D46AD128CA4AFD07C9266CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E376AB19CA6874AFA2E82FB0 /* AngleBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleBadgeView.swift; sourceTree = "<group>"; };
+		E4E5B30E8D8FD72F80E41448 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F2BE24862C22D3C466B265EC /* PhaseTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTimelineView.swift; sourceTree = "<group>"; };
+		F839CF9815CD7E83B217743A /* CricCoachAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CricCoachAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA127841C7CE66D6B6325CB5 /* CricCoachAITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CricCoachAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE103EE46EBCCE367BBDCD0 /* PosePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosePhase.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		02646AE79CB8DD3ADB8D6668 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F839CF9815CD7E83B217743A /* CricCoachAI.app */,
+				FA127841C7CE66D6B6325CB5 /* CricCoachAITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0ADD4B3DBD850064CEC173B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B3C006738FE868F42DF0A2D6 /* AngleCalculator.swift */,
+				55C345F237EBCB556044FF37 /* Constants.swift */,
+				A49ABFD4B0DFDE81B6C7E1AB /* DesignSystem.swift */,
+				3E256017D2DF3E299A0A6C2C /* PoseNormalizer.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0EA7159BC220710C2C67919D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0068907CE0C47D04DFE2E400 /* AnalysisView.swift */,
+				019BB8A4EEAFC7213D39881A /* HomeView.swift */,
+				E4E5B30E8D8FD72F80E41448 /* OnboardingView.swift */,
+				4E576D06E8EC10E504F54558 /* PaywallView.swift */,
+				87C52CFBC684B91197A19254 /* PhaseDetailView.swift */,
+				5DA0DD4452F2BA322A7F22BC /* RecordingView.swift */,
+				6614C66599281E6B9D85A3D0 /* SessionProgressView.swift */,
+				8745CD7A3678491642BD2511 /* SetupGuideView.swift */,
+				9D74BEE4D1545E8EA8A141AB /* SkeletonOverlayView.swift */,
+				CD30B0F37308824382820DB6 /* VideoImportView.swift */,
+				F38C29E65443A3F43CF959E4 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3ABBF0FF82F4AB7E2B42CE36 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				320903407011462D50749B28 /* ContentView.swift */,
+				4CBCEE1DA9F6AF8F5234441E /* CricCoachAIApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4BAEC809503375324DEAEB00 = {
+			isa = PBXGroup;
+			children = (
+				5FC670CBA50B488C113E8BC2 /* CricCoachAI */,
+				D541E4F46BF818537EEEDA93 /* CricCoachAITests */,
+				02646AE79CB8DD3ADB8D6668 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4FB48B395ECAE8E6C53BE1FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D46AD128CA4AFD07C9266CA6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5FC670CBA50B488C113E8BC2 /* CricCoachAI */ = {
+			isa = PBXGroup;
+			children = (
+				26BE77133318A86F8CCCED6E /* CricCoachAI.entitlements */,
+				006F55BD7228A8F6F886B000 /* Info.plist */,
+				3ABBF0FF82F4AB7E2B42CE36 /* App */,
+				65B4AA089F8F76B786B64AC9 /* Models */,
+				4FB48B395ECAE8E6C53BE1FA /* Resources */,
+				C78D2E2C4DF5C9200B33929C /* Services */,
+				0ADD4B3DBD850064CEC173B3 /* Utilities */,
+				0EA7159BC220710C2C67919D /* Views */,
+			);
+			path = CricCoachAI;
+			sourceTree = "<group>";
+		};
+		65B4AA089F8F76B786B64AC9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				42F6F2DED37B7FB88E217C9F /* AnalysisSession.swift */,
+				958326769395ACC734B6DA93 /* PoseFrame.swift */,
+				FCE103EE46EBCCE367BBDCD0 /* PosePhase.swift */,
+				B04BAE76CCA3622D7DE97F0E /* TechniqueScore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C78D2E2C4DF5C9200B33929C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88247CF1430C28506292D85F /* AIAnalysisService.swift */,
+				A31547EC91FDCD581BBE17D0 /* PhaseDetectionService.swift */,
+				9ACA5AA8A1611437D97A7144 /* PoseEstimationService.swift */,
+				53C40222A421140C0AB73CEF /* RuleScoringService.swift */,
+				5F26829F002BA9CB29E73C23 /* SharingService.swift */,
+				3910FCB49DCDBA7A43AA0896 /* StorageService.swift */,
+				C5AF03872D6BBD3831F5CC92 /* VideoProcessingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D541E4F46BF818537EEEDA93 /* CricCoachAITests */ = {
+			isa = PBXGroup;
+			children = (
+				CCFDF598B7F3157689DC143D /* CricCoachAITests.swift */,
+			);
+			path = CricCoachAITests;
+			sourceTree = "<group>";
+		};
+		F38C29E65443A3F43CF959E4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E376AB19CA6874AFA2E82FB0 /* AngleBadgeView.swift */,
+				F2BE24862C22D3C466B265EC /* PhaseTimelineView.swift */,
+				4A0481C068600B1DE59D1EB0 /* ScoreCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D859816BCDC97EB40BA04A21 /* CricCoachAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07EC336B5DABDF402D0B6D1D /* Build configuration list for PBXNativeTarget "CricCoachAI" */;
+			buildPhases = (
+				FDE13A19F628EF1C4D58CD15 /* Sources */,
+				F2DF9D0534019F2D85F7EE29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CricCoachAI;
+			packageProductDependencies = (
+			);
+			productName = CricCoachAI;
+			productReference = F839CF9815CD7E83B217743A /* CricCoachAI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E67D8278C6ACC26ABEE0BE02 /* CricCoachAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1945195FF43348C485C51F80 /* Build configuration list for PBXNativeTarget "CricCoachAITests" */;
+			buildPhases = (
+				029A8EC19F5FEB2409DA4AC5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DD69B464F79BB99EBD57B8A /* PBXTargetDependency */,
+			);
+			name = CricCoachAITests;
+			packageProductDependencies = (
+			);
+			productName = CricCoachAITests;
+			productReference = FA127841C7CE66D6B6325CB5 /* CricCoachAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		62ECA644A857C0D18FD48296 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					D859816BCDC97EB40BA04A21 = {
+						ProvisioningStyle = Automatic;
+					};
+					E67D8278C6ACC26ABEE0BE02 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 94505D835C56C39B7027EA7A /* Build configuration list for PBXProject "CricCoachAI" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 4BAEC809503375324DEAEB00;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 02646AE79CB8DD3ADB8D6668 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D859816BCDC97EB40BA04A21 /* CricCoachAI */,
+				E67D8278C6ACC26ABEE0BE02 /* CricCoachAITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2DF9D0534019F2D85F7EE29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6537973A0B849AB51257A108 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		029A8EC19F5FEB2409DA4AC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D44A6B7144865B53A042A746 /* CricCoachAITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDE13A19F628EF1C4D58CD15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4DAE4034CB70B7BEDFB4A15 /* AIAnalysisService.swift in Sources */,
+				57C8D2E938B4F2040324E3C9 /* AnalysisSession.swift in Sources */,
+				0D3CF862958A918BEACAEAC8 /* AnalysisView.swift in Sources */,
+				90041F25EB480BB25F778378 /* AngleBadgeView.swift in Sources */,
+				1DFB2D421934585A7592313B /* AngleCalculator.swift in Sources */,
+				501EB636980CDEB766058ACD /* Constants.swift in Sources */,
+				55C74D6A095D18DFAF39F164 /* ContentView.swift in Sources */,
+				C3B9DC61B4DCCD441B89D011 /* CricCoachAIApp.swift in Sources */,
+				C172F2F5DD1321F427844B51 /* DesignSystem.swift in Sources */,
+				8F6FF0C03CAE3265312332D2 /* HomeView.swift in Sources */,
+				922C04FAD7408A178B249B16 /* OnboardingView.swift in Sources */,
+				7F2DF68D17DA2D00A96455F1 /* PaywallView.swift in Sources */,
+				3F3C00B2B0C542F62FFEB1B3 /* PhaseDetailView.swift in Sources */,
+				C32ED23AC791FF0FD4AD2C21 /* PhaseDetectionService.swift in Sources */,
+				017529FC79745FDA4F9BDE99 /* PhaseTimelineView.swift in Sources */,
+				7A67EB0A178088CB85CA7E5F /* PoseEstimationService.swift in Sources */,
+				FB64BB80ED9EDF42D75E76E5 /* PoseFrame.swift in Sources */,
+				E6981A4EE06493068681C8CB /* PoseNormalizer.swift in Sources */,
+				04CB63F052891740E0C42BEA /* PosePhase.swift in Sources */,
+				F8BA62417BB7E25FF6C6225A /* RecordingView.swift in Sources */,
+				5FCC103CB9773D4D6D388DD0 /* RuleScoringService.swift in Sources */,
+				0D1B3C0B580E25574720A60F /* ScoreCardView.swift in Sources */,
+				EC58C2FA515B616DD9712F6D /* SessionProgressView.swift in Sources */,
+				E82E27333810EB1403D0FEA6 /* SetupGuideView.swift in Sources */,
+				8FE8E7A0D7107541FF5BADD5 /* SharingService.swift in Sources */,
+				59D81C60FE704D046FDD43B6 /* SkeletonOverlayView.swift in Sources */,
+				27B89A3A84A355B2E57502CB /* StorageService.swift in Sources */,
+				FD0002FCB3C36B5A12C46EA9 /* TechniqueScore.swift in Sources */,
+				3D3CBF353F2E34D2423E75F0 /* VideoImportView.swift in Sources */,
+				E3E5C57A2E52320E3BD9721D /* VideoProcessingService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DD69B464F79BB99EBD57B8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D859816BCDC97EB40BA04A21 /* CricCoachAI */;
+			targetProxy = 6CDC24CFC9EC993C1F8C3B1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		37B79334915A5438C76EC9F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		59B8C1CFA42A5210E9E858AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		6F4BD05BF919372D13101746 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CricCoachAI/CricCoachAI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = MZY7QZHADA;
+				INFOPLIST_FILE = CricCoachAI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.criccoach.ai;
+				SDKROOT = iphoneos;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C288ED49AD05CFB58C6D99E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CricCoachAI/CricCoachAI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = MZY7QZHADA;
+				INFOPLIST_FILE = CricCoachAI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.criccoach.ai;
+				SDKROOT = iphoneos;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DB9C374BB4DB23CDA7F745FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.criccoach.ai.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CricCoachAI.app/CricCoachAI";
+			};
+			name = Release;
+		};
+		EC92B71483975BA15220F37F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.criccoach.ai.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CricCoachAI.app/CricCoachAI";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07EC336B5DABDF402D0B6D1D /* Build configuration list for PBXNativeTarget "CricCoachAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C288ED49AD05CFB58C6D99E9 /* Debug */,
+				6F4BD05BF919372D13101746 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1945195FF43348C485C51F80 /* Build configuration list for PBXNativeTarget "CricCoachAITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC92B71483975BA15220F37F /* Debug */,
+				DB9C374BB4DB23CDA7F745FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		94505D835C56C39B7027EA7A /* Build configuration list for PBXProject "CricCoachAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59B8C1CFA42A5210E9E858AF /* Debug */,
+				37B79334915A5438C76EC9F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 62ECA644A857C0D18FD48296 /* Project object */;
+}
